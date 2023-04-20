@@ -23,16 +23,20 @@ const createAndSavePerson = (done) => {
     age: 19,
     favoriteFoods: ["food"],
   });
+
   document.save((error, data) => {
-    if (error) {
-      return console.error(error);
-    }
+    if (error) return console.error(error);
+
     return done(null, data);
   });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople, (error, data) => {
+    if (error) return console.error(error);
+
+    return done(null, data);
+  });
 };
 
 const findPeopleByName = (personName, done) => {
